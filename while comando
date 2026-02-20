@@ -1,0 +1,38 @@
+import time
+
+# 1. As Variáveis de Controle (True/False)
+maquina_ligada = True  # O botão "ON"
+caixas_prontas = 0     # Nosso contador
+
+print("🏭 INICIANDO A ESTEIRA...")
+
+# 2. O Loop (Enquanto a máquina estiver ligada == True)
+while maquina_ligada:
+    
+    # Simulando a chegada de uma caixa (entrada do usuário)
+    situacao = input("\nO que veio na esteira? (digite: 'caixa', 'lixo' ou 'fogo'): ")
+
+    # --- CENÁRIO A: O PERIGO (BREAK) ---
+    if situacao == "fogo":
+        print("🚨 EMERGÊNCIA! FOGO DETECTADO!")
+        print("Parando a fábrica imediatamente via break.")
+        break  # O break ignora tudo abaixo e SAI do loop na hora.
+
+    # --- CENÁRIO B: O PROBLEMA LEVE (CONTINUE) ---
+    if situacao == "lixo":
+        print("⚠️ Caixa amassada jogada fora. Verificando a próxima...")
+        continue  # O continue volta para o topo do while. 
+                  # Note que o código não desce para contar essa caixa.
+
+    # --- CENÁRIO C: O SUCESSO ---
+    print("✅ Caixa empacotada com sucesso.")
+    caixas_prontas += 1  # Conta +1
+    print(f"Total pronto: {caixas_prontas}/5")
+
+    # --- CENÁRIO D: A CONDIÇÃO DE PARADA (FALSE) ---
+    if caixas_prontas == 5:
+        print("🎉 Meta do dia atingida!")
+        maquina_ligada = False  # Mudamos a chave para False.
+                                # O loop vai terminar naturalmente na próxima checagem.
+
+print("\n🔚 Fim do expediente. A esteira parou.")
